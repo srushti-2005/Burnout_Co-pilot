@@ -1,0 +1,7 @@
+burnout_env/
+__pycache__/
+*.pyc
+friend_env/
+.env
+venv/
+.venv/
