@@ -6,174 +6,316 @@ import streamlit as st
 def apply_custom_styles():
     css = """
     <style>
+
     /* ── GOOGLE FONTS ──────────────────────────────────────────────────────── */
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap');
 
     /* ── CSS VARIABLES ─────────────────────────────────────────────────────── */
     :root {
-        --bg-gradient: linear-gradient(135deg, #eef2ff 0%, #fdf2f8 45%, #f5f3ff 100%);
-        --card-bg: rgba(255, 255, 255, 0.88);
-        --card-border: 1.5px solid rgba(230, 234, 250, 0.9);
-        --card-shadow: 0 10px 30px -5px rgba(130, 140, 200, 0.12), 0 4px 10px -2px rgba(130, 140, 200, 0.06);
-        --card-radius: 24px;
-        --card-radius-sm: 16px;
-        
-        --text-main: #1e1b4b;
-        --text-muted: #828ba0;
-        
-        --primary-gradient: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%);
-        --primary-hover: linear-gradient(90deg, #7c3aed 0%, #db2777 100%);
-        --primary-shadow: 0 8px 20px -3px rgba(236, 72, 153, 0.35);
-        
-        --accent-purple: #8b5cf6;
-        --accent-pink: #ec4899;
-        --accent-cyan: #06b6d4;
-        --accent-green: #10b981;
+        --clay-bg:        #f0f4ff;
+        --clay-surface:   #ffffff;
+        --clay-primary:   #ff6b6b;
+        --clay-secondary: #4ecdc4;
+        --clay-accent:    #ffe66d;
+        --clay-purple:    #a8a4ff;
+        --clay-green:     #7bed9f;
+        --clay-text:      #2d3561;
+        --clay-muted:     #8892b0;
+        --clay-shadow:    6px 6px 0px #c8d0f0;
+        --clay-shadow-sm: 3px 3px 0px #c8d0f0;
+        --clay-radius:    20px;
+        --clay-radius-sm: 12px;
     }
 
-    /* ── GLOBAL APP BACKGROUND ─────────────────────────────────────────────── */
+    /* ── GLOBAL BACKGROUND ─────────────────────────────────────────────────── */
     .stApp {
-        background: var(--bg-gradient) !important;
-        font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif !important;
-        color: var(--text-main) !important;
+        background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 50%, #f5f0ff 100%) !important;
+        font-family: 'Nunito', sans-serif !important;
     }
 
+    /* ── HIDE DEFAULT STREAMLIT ELEMENTS ───────────────────────────────────── */
     #MainMenu, footer, header { visibility: hidden; }
     .block-container {
         padding-top: 2rem !important;
-        padding-bottom: 3rem !important;
-        max-width: 1280px !important;
+        padding-bottom: 2rem !important;
     }
 
-    /* ── HEADINGS ──────────────────────────────────────────────────────────── */
-    h1, h2, h3, h4 {
-        font-family: 'Plus Jakarta Sans', sans-serif !important;
+    /* ── MAIN TITLE ────────────────────────────────────────────────────────── */
+    h1 {
+        font-family: 'Nunito', sans-serif !important;
+        font-weight: 900 !important;
+        color: var(--clay-text) !important;
+        font-size: 2.2rem !important;
+        letter-spacing: -0.5px !important;
+    }
+
+    /* ── ALL HEADINGS ──────────────────────────────────────────────────────── */
+    h2, h3, h4 {
+        font-family: 'Nunito', sans-serif !important;
         font-weight: 800 !important;
-        color: var(--text-main) !important;
-        letter-spacing: -0.4px !important;
+        color: var(--clay-text) !important;
     }
 
-    /* ── SIDEBAR ───────────────────────────────────────────────────────────── */
+    /* ── SIDEBAR ────────────────────────────────────────────────────────────── */
     section[data-testid="stSidebar"] {
-        background: rgba(255, 255, 255, 0.75) !important;
-        backdrop-filter: blur(16px) !important;
-        border-right: 1.5px solid rgba(230, 234, 250, 0.8) !important;
-        box-shadow: 6px 0 25px rgba(140, 150, 210, 0.08) !important;
-        min-width: 270px !important;
-        max-width: 270px !important;
+        background: linear-gradient(180deg, #ffffff 0%, #f5f0ff 100%) !important;
+        border-right: 3px solid #e0e8ff !important;
+        box-shadow: 4px 0 20px rgba(168, 164, 255, 0.15) !important;
     }
 
-    /* ── INPUT FIELDS (Text / Password) ────────────────────────────────────── */
-    .stTextInput input {
-        background: rgba(255, 255, 255, 0.95) !important;
-        border: 1.5px solid #e2e8f0 !important;
-        border-radius: 14px !important;
-        color: var(--text-main) !important;
-        padding: 12px 16px !important;
-        font-size: 0.92rem !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02) !important;
-        transition: all 0.2s ease !important;
-    }
-    .stTextInput input:focus {
-        border-color: #a855f7 !important;
-        box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15) !important;
-    }
-
-    /* ── PRIMARY & SECONDARY BUTTONS ───────────────────────────────────────── */
-    button[kind="primary"], .stButton > button[kind="primary"] {
-        background: var(--primary-gradient) !important;
-        color: #ffffff !important;
-        border: none !important;
-        border-radius: 14px !important;
-        font-weight: 700 !important;
-        font-size: 0.95rem !important;
-        padding: 0.65rem 1.2rem !important;
-        box-shadow: var(--primary-shadow) !important;
-        transition: all 0.25s ease !important;
-    }
-    button[kind="primary"]:hover, .stButton > button[kind="primary"]:hover {
-        background: var(--primary-hover) !important;
-        box-shadow: 0 10px 24px -2px rgba(236, 72, 153, 0.45) !important;
-        transform: translateY(-1px) !important;
-    }
-
-    button[kind="secondary"], .stButton > button {
-        background: #ffffff !important;
-        color: #475569 !important;
-        border: 1.5px solid #e2e8f0 !important;
-        border-radius: 14px !important;
+    section[data-testid="stSidebar"] .stSelectbox label,
+    section[data-testid="stSidebar"] .stSlider label,
+    section[data-testid="stSidebar"] p,
+    section[data-testid="stSidebar"] span {
+        color: var(--clay-text) !important;
+        font-family: 'Nunito', sans-serif !important;
         font-weight: 600 !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03) !important;
-        transition: all 0.2s ease !important;
-    }
-    button[kind="secondary"]:hover, .stButton > button:hover {
-        background: #f8fafc !important;
-        border-color: #cbd5e1 !important;
-        color: #1e293b !important;
-        transform: translateY(-1px) !important;
     }
 
-    /* ── TABS ──────────────────────────────────────────────────────────────── */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 20px !important;
-        background-color: transparent !important;
-        border-bottom: 1.5px solid #eef2f6 !important;
-    }
-    .stTabs [data-baseweb="tab"] {
-        padding: 10px 16px !important;
-        font-weight: 700 !important;
-        color: var(--text-muted) !important;
-        border: none !important;
-    }
-    .stTabs [aria-selected="true"] {
-        color: #ec4899 !important;
-        border-bottom: 2.5px solid #ec4899 !important;
+    section[data-testid="stSidebar"] h1,
+    section[data-testid="stSidebar"] h2,
+    section[data-testid="stSidebar"] h3 {
+        color: var(--clay-text) !important;
     }
 
-    /* ── METRIC CARDS ──────────────────────────────────────────────────────── */
+    /* ── SIDEBAR SUCCESS/WARNING/INFO BOXES ─────────────────────────────────── */
+    section[data-testid="stSidebar"] .stAlert {
+        border-radius: var(--clay-radius-sm) !important;
+        border: 2px solid !important;
+        box-shadow: var(--clay-shadow-sm) !important;
+        font-family: 'Nunito', sans-serif !important;
+        font-weight: 600 !important;
+    }
+
+    /* ── SIDEBAR SLIDERS ────────────────────────────────────────────────────── */
+    section[data-testid="stSidebar"] .stSlider div[data-baseweb="slider"] > div > div {
+        background: var(--clay-primary) !important;
+    }
+    section[data-testid="stSidebar"] .stSlider div[role="slider"] {
+        background: var(--clay-primary) !important;
+        border: 3px solid white !important;
+        box-shadow: 2px 2px 0px #ffb3b3 !important;
+        width: 20px !important;
+        height: 20px !important;
+        border-radius: 50% !important;
+    }
+
+    /* ── SIDEBAR SELECTBOX ──────────────────────────────────────────────────── */
+    section[data-testid="stSidebar"] .stSelectbox > div > div {
+        background: white !important;
+        border: 2px solid #e0e8ff !important;
+        border-radius: var(--clay-radius-sm) !important;
+        box-shadow: var(--clay-shadow-sm) !important;
+        color: var(--clay-text) !important;
+        font-family: 'Nunito', sans-serif !important;
+        font-weight: 600 !important;
+    }
+
+    /* ── METRIC CARDS (the 3 wellness cards) ───────────────────────────────── */
     div[data-testid="stMetric"] {
-        background: var(--card-bg) !important;
-        border-radius: var(--card-radius) !important;
-        border: var(--card-border) !important;
-        box-shadow: var(--card-shadow) !important;
-        backdrop-filter: blur(12px) !important;
-        padding: 22px 24px !important;
+        background: white !important;
+        border-radius: var(--clay-radius) !important;
+        border: 2.5px solid #e0e8ff !important;
+        box-shadow: var(--clay-shadow) !important;
+        padding: 20px 24px !important;
         transition: transform 0.2s ease, box-shadow 0.2s ease !important;
     }
+
     div[data-testid="stMetric"]:hover {
-        transform: translateY(-3px) !important;
-        box-shadow: 0 16px 36px -6px rgba(130, 140, 200, 0.16) !important;
+        transform: translate(-2px, -2px) !important;
+        box-shadow: 8px 8px 0px #c8d0f0 !important;
     }
+
     div[data-testid="stMetric"] label {
-        color: var(--text-muted) !important;
+        color: var(--clay-muted) !important;
+        font-family: 'Nunito', sans-serif !important;
         font-weight: 700 !important;
-        font-size: 0.88rem !important;
-        text-transform: capitalize !important;
+        font-size: 0.85rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
     }
+
     div[data-testid="stMetric"] [data-testid="stMetricValue"] {
-        color: var(--text-main) !important;
-        font-weight: 800 !important;
-        font-size: 2.2rem !important;
+        color: var(--clay-text) !important;
+        font-family: 'Nunito', sans-serif !important;
+        font-weight: 900 !important;
+        font-size: 2rem !important;
     }
 
-    /* ── PLOTLY CONTAINERS ─────────────────────────────────────────────────── */
+    div[data-testid="stMetric"] [data-testid="stMetricDelta"] {
+        color: var(--clay-muted) !important;
+        font-family: 'Nunito', sans-serif !important;
+        font-weight: 600 !important;
+        font-size: 0.8rem !important;
+    }
+
+    /* ── PLOTLY CHART CONTAINERS ────────────────────────────────────────────── */
     div[data-testid="stPlotlyChart"] {
-        background: var(--card-bg) !important;
-        border-radius: var(--card-radius) !important;
-        border: var(--card-border) !important;
-        box-shadow: var(--card-shadow) !important;
-        padding: 12px !important;
-        backdrop-filter: blur(12px) !important;
+        background: white !important;
+        border-radius: var(--clay-radius) !important;
+        border: 2.5px solid #e0e8ff !important;
+        box-shadow: 6px 6px 0px #c8d0f0 !important;
+        padding: 8px !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+        overflow: hidden !important;
     }
 
-    /* ── CLEAN SCROLLBAR ───────────────────────────────────────────────────── */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 10px;
+    div[data-testid="stPlotlyChart"]:hover {
+        transform: translate(-2px, -2px) !important;
+        box-shadow: 8px 8px 0px #c8d0f0 !important;
     }
-    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    /* ── LINE CHART (st.line_chart / Vega) ──────────────────────────────────── */
+    div[data-testid="stArrowVegaLiteChart"] {
+        background: white !important;
+        border-radius: var(--clay-radius) !important;
+        border: 2.5px solid #e0e8ff !important;
+        box-shadow: 6px 6px 0px #c8d0f0 !important;
+        padding: 12px !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+        overflow: hidden !important;
+    }
+
+    div[data-testid="stArrowVegaLiteChart"]:hover {
+        transform: translate(-2px, -2px) !important;
+        box-shadow: 8px 8px 0px #c8d0f0 !important;
+    }
+
+    /* ── VEGA CHART (fallback selector) ─────────────────────────────────────── */
+    div[data-testid="stVegaLiteChart"] {
+        background: white !important;
+        border-radius: var(--clay-radius) !important;
+        border: 2.5px solid #e0e8ff !important;
+        box-shadow: 6px 6px 0px #c8d0f0 !important;
+        padding: 12px !important;
+        overflow: hidden !important;
+    }
+
+    /* ── DATAFRAME / TABLE ──────────────────────────────────────────────────── */
+    div[data-testid="stDataFrame"] {
+        background: white !important;
+        border-radius: var(--clay-radius) !important;
+        border: 2.5px solid #e0e8ff !important;
+        box-shadow: var(--clay-shadow) !important;
+        overflow: hidden !important;
+    }
+
+    /* ── SUBHEADERS ─────────────────────────────────────────────────────────── */
+    div[data-testid="stMarkdownContainer"] h3 {
+        color: var(--clay-text) !important;
+        font-family: 'Nunito', sans-serif !important;
+        font-weight: 800 !important;
+    }
+
+    /* ── CAPTIONS ───────────────────────────────────────────────────────────── */
+    div[data-testid="stCaptionContainer"] p,
+    .stCaption p {
+        color: var(--clay-muted) !important;
+        font-family: 'Quicksand', sans-serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* ── SPINNER ────────────────────────────────────────────────────────────── */
+    .stSpinner > div {
+        border-top-color: var(--clay-primary) !important;
+    }
+
+    /* ── SUCCESS / WARNING / INFO ALERTS ────────────────────────────────────── */
+    div[data-testid="stAlert"] {
+        border-radius: var(--clay-radius-sm) !important;
+        border-width: 2px !important;
+        box-shadow: var(--clay-shadow-sm) !important;
+        font-family: 'Nunito', sans-serif !important;
+        font-weight: 600 !important;
+    }
+
+    /* ── HORIZONTAL RULE ─────────────────────────────────────────────────────── */
+    hr {
+        border: none !important;
+        border-top: 2.5px dashed #d0d8f0 !important;
+        margin: 1.5rem 0 !important;
+    }
+
+    /* ── SECTION HEADINGS (markdown h3/h4) ──────────────────────────────────── */
+    .stMarkdown h3 {
+        background: linear-gradient(90deg, var(--clay-text), var(--clay-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* ── INSIGHT CARDS (the red/green driver cards) ──────────────────────────── */
+    /* These are rendered via st.markdown unsafe_allow_html — clay shadow applied */
+    .element-container div[style*="border-left"] {
+        box-shadow: var(--clay-shadow-sm) !important;
+    }
+
+    /* ── COMPARISON CARDS (4 column cards) ──────────────────────────────────── */
+    .element-container div[style*="border-radius:10px"] {
+        box-shadow: var(--clay-shadow) !important;
+        transition: transform 0.2s ease !important;
+    }
+
+    /* ── SIDEBAR ALWAYS VISIBLE ────────────────────────────────────────────── */
+    section[data-testid="stSidebar"] {
+        min-width: 260px !important;
+        max-width: 260px !important;
+        transform: translateX(0px) !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    /* Hide ALL sidebar toggle/collapse buttons and keyboard_double icon */
+    button[data-testid="collapsedControl"],
+    button[data-testid="baseButton-headerNoPadding"],
+    [data-testid="collapsedControl"],
+    section[data-testid="stSidebar"] > div:first-child > div > button,
+    .st-emotion-cache-h4xjwg,
+    .st-emotion-cache-1wqrzgl,
+    span[data-testid="stIconMaterial"] {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* ── HIDE STREAMLIT DOCS/HELP PANEL IN SIDEBAR ─────────────────────────── */
+    section[data-testid="stSidebar"] iframe { display:none !important; }
+    section[data-testid="stSidebar"] [data-testid="stHelpText"] { display:none !important; }
+    section[data-testid="stSidebar"] .element-container:has(iframe) { display:none !important; }
+    /* Hide any auto-generated dark code/docs blocks */
+    section[data-testid="stSidebar"] pre { display:none !important; }
+    section[data-testid="stSidebar"] code { display:none !important; }
+    section[data-testid="stSidebar"] .stCodeBlock { display:none !important; }
+
+    /* ── SCROLLBAR ───────────────────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f0f4ff; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb {
+        background: #c8d0f0;
+        border-radius: 10px;
+        border: 2px solid #f0f4ff;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--clay-purple); }
+
     </style>
     """
     st.markdown(css, unsafe_allow_html=True)
+
+    # ── Inject clay-style page title with emoji badge ─────────────────────────
+    st.markdown("""
+    <style>
+    /* Clay badge on the title icon */
+    .title-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .title-badge .icon {
+        background: linear-gradient(135deg, #a8a4ff, #ff6b6b);
+        border-radius: 16px;
+        width: 48px; height: 48px;
+        display: inline-flex; align-items: center; justify-content: center;
+        font-size: 1.4rem;
+        box-shadow: 4px 4px 0px #c8d0f0;
+        border: 2.5px solid white;
+    }
+    </style>
+    """, unsafe_allow_html=True)
