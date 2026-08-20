@@ -4,7 +4,7 @@ plotly==5.18.0
 scikit-learn==1.4.0
 statsmodels==0.14.1
 xgboost==2.0.3
-numpy==2.1.1 
+numpy==1.26.4
 shap==0.46.0
 matplotlib==3.7.2
 seaborn==0.12.2
