@@ -293,6 +293,11 @@ def show_dashboard():
             logout()
             st.rerun()
 
+    st.set_page_config(
+    page_title="Burnout Copilot",
+    initial_sidebar_state="collapsed"
+)
+
     # ── LOAD DATA ─────────────────────────────────────────────────────────────
     sessions = get_user_sessions(uid, limit=200)
 
