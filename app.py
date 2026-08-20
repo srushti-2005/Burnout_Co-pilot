@@ -26,7 +26,7 @@ import plotly.graph_objects as go
 st.set_page_config(
     page_title="🛡️ Burnout Co-pilot",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 apply_custom_styles()
 
@@ -212,7 +212,14 @@ def show_dashboard():
     # eliminates this whole class of bug.
 
     # ── SIDEBAR ───────────────────────────────────────────────────────────────
-    with st.sidebar:
+       # ── MENU (mobile-safe replacement for st.sidebar) ─────────────────────────
+    if "show_menu" not in st.session_state:
+        st.session_state.show_menu = False
+
+    if st.button("☰ Menu"):
+        st.session_state.show_menu = not st.session_state.show_menu
+
+    if st.session_state.show_menu:
         st.markdown(f"""
         <div style="background:linear-gradient(135deg,#a8a4ff22,#ff6b6b22);
             border-radius:16px;padding:16px;margin-bottom:16px;
@@ -226,9 +233,6 @@ def show_dashboard():
         st.markdown("**📡 Background Tracking Status**")
         st.caption("Tracked automatically by the Startup Logger, even when this dashboard is closed.")
 
-        # Read the most recent session from Supabase instead of an
-        # in-process buffer — there is no tracker running inside
-        # Streamlit to read a live buffer FROM anymore (see note above).
         _recent = get_user_sessions(uid, limit=1)
         if _recent:
             last = _recent[-1]
@@ -265,11 +269,9 @@ def show_dashboard():
         st.caption("💾 New sessions sync automatically — refresh to see the latest.")
         st.markdown("---")
 
-        # Re-inject right here so it fires AFTER Streamlit's own stylesheet loads
         st.markdown("""
         <style>
-        section[data-testid="stSidebar"] button,
-        section[data-testid="stSidebar"] .stButton > button {
+        div.stButton > button {
             background-color: #e2e0ff !important;
             background:       #e2e0ff !important;
             color:            #2d3561 !important;
@@ -278,8 +280,7 @@ def show_dashboard():
             font-weight:      800 !important;
             box-shadow:       3px 3px 0px #c0bbff !important;
         }
-        section[data-testid="stSidebar"] button:hover,
-        section[data-testid="stSidebar"] .stButton > button:hover {
+        div.stButton > button:hover {
             background-color: #cbc7ff !important;
             background:       #cbc7ff !important;
             border-color:     #7b76e0 !important;
@@ -289,15 +290,10 @@ def show_dashboard():
         </style>
         """, unsafe_allow_html=True)
 
-        if st.button("🚪 Logout", use_container_width=True):
+        if st.button("🚪 Logout"):
             logout()
             st.rerun()
-
-    st.set_page_config(
-    page_title="Burnout Copilot",
-    initial_sidebar_state="collapsed"
-)
-
+            
     # ── LOAD DATA ─────────────────────────────────────────────────────────────
     sessions = get_user_sessions(uid, limit=200)
 
