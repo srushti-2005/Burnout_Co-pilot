@@ -24,3 +24,7 @@ app.include_router(suggestions.router)
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+@app.get("/")
+def root():
+    return {"status": "ok", "message": "Burnout Copilot API is running"}
