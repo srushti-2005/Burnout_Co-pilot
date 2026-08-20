@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from core.config import CORS_ORIGINS
 from routers import sessions, predict, baseline, suggestions
 
+
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
