@@ -2,9 +2,8 @@ import logging
 import sys
 from pathlib import Path
 
-# Must run BEFORE importing core/routers — do this first, always
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # repo root, for src/
-sys.path.insert(0, str(Path(__file__).resolve().parent))          # api/ itself
+# api/ itself is what Vercel maps to /var/task — this is the only path we need
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
