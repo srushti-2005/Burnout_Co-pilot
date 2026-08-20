@@ -43,6 +43,7 @@ this module does.
 
 # src/auth/supabase_client.py
 import os
+import streamlit as st
 import logging
 
 logger = logging.getLogger(__name__)
@@ -72,9 +73,12 @@ _ENV_PATH     = os.path.join(_PROJECT_ROOT, ".env")
 
 load_dotenv(_ENV_PATH)
 
-SUPABASE_URL = os.environ.get("SUPABASE_URL")
-SUPABASE_ANON_KEY = os.environ.get("SUPABASE_ANON_KEY")
-SUPABASE_SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
+SUPABASE_URL = st.secrets.get("SUPABASE_URL", os.getenv("SUPABASE_URL"))
+SUPABASE_ANON_KEY = st.secrets.get("SUPABASE_ANON_KEY", os.getenv("SUPABASE_ANON_KEY"))
+SUPABASE_SERVICE_ROLE_KEY = st.secrets.get(
+    "SUPABASE_SERVICE_ROLE_KEY",
+    os.getenv("SUPABASE_SERVICE_ROLE_KEY")
+)
 
 if not SUPABASE_URL or not SUPABASE_ANON_KEY:
     raise RuntimeError(
