@@ -41,7 +41,23 @@ milliseconds and completely avoids that class of bug, so that's what
 this module does.
 """
 
+# src/auth/supabase_client.py
 import os
+import logging
+
+logger = logging.getLogger(__name__)
+
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
+
+if not SUPABASE_URL or not SUPABASE_ANON_KEY:
+    logger.warning("SUPABASE_URL / SUPABASE_ANON_KEY not set — Supabase features will fail at request time, not at import time.")
+
+def get_service_client():
+    if not SUPABASE_URL or not SUPABASE_ANON_KEY:
+        raise RuntimeError("Supabase not configured. Check environment variables.")
+    # ... existing client creation code
+
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
