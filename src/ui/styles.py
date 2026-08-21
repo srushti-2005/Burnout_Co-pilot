@@ -57,6 +57,20 @@ def apply_custom_styles():
         pointer-events: auto !important;
         z-index: 999999 !important;
     }
+    /* Suppresses the floating tooltip box that shows the button's raw
+       accessible label ("keyboard_double_arrow_left" etc.) on hover.
+       Streamlit renders this via BaseWeb's tooltip/popover component
+       (data-baseweb="tooltip"), not as literal text in our own CSS —
+       this hides that popover specifically. Note: this hides ALL
+       BaseWeb tooltips app-wide, not just this button's, since
+       tooltips render in a portal outside the button's own element
+       tree and can't be scoped to just one trigger. If you rely on
+       hover tooltips elsewhere (e.g. on help icons), those will be
+       hidden too — say so if that's a problem and we'll scope it
+       differently. */
+    div[data-baseweb="tooltip"] {
+        display: none !important;
+    }
 
     .block-container {
         padding-top: 2rem !important;
