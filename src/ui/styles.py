@@ -2,6 +2,18 @@
 
 import streamlit as st
 
+def hide_toggle_tooltip():
+    st.markdown("""
+    <script>
+    const removeTooltip = () => {
+        document.querySelectorAll('[data-testid="collapsedControl"], [data-testid="stSidebarCollapseButton"]')
+            .forEach(el => el.removeAttribute('title'));
+    };
+    removeTooltip();
+    new MutationObserver(removeTooltip).observe(document.body, {childList: true, subtree: true});
+    </script>
+    """, unsafe_allow_html=True)
+
 
 def apply_custom_styles():
     css = """
@@ -336,3 +348,5 @@ def apply_custom_styles():
     }
     </style>
     """, unsafe_allow_html=True)
+
+    

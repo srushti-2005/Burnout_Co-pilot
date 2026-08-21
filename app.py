@@ -23,6 +23,10 @@ from src.ui.styles      import apply_custom_styles
 from src.config.config  import MODEL_PATH
 import plotly.graph_objects as go
 
+from src.ui.styles import apply_custom_styles, hide_toggle_tooltip
+apply_custom_styles()
+hide_toggle_tooltip()
+
 st.set_page_config(
     page_title="🛡️ Burnout Co-pilot",
     layout="wide",
@@ -445,3 +449,4 @@ if st.session_state.logged_in:
     show_dashboard()
 else:
     show_auth_page()
+
