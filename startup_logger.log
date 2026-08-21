@@ -1784,3 +1784,6 @@
 [StartupLogger 16:59:15] HTTP Request: GET https://yljtzzqbztuxjnztautv.supabase.co/rest/v1/user_baselines?select=%2A&user_id=eq.58d2bde9-5b03-43eb-a176-6ac280e34aa3 "HTTP/2 200 OK"
 [StartupLogger 16:59:15] HTTP Request: POST https://yljtzzqbztuxjnztautv.supabase.co/rest/v1/user_baselines "HTTP/2 200 OK"
 [StartupLogger 16:59:15] ✅ Session saved — typing_mean=0.0 kpm | typing_var=0.0 | switches=0 | work_duration=0.48h | late_night=False | hour=16
+[StartupLogger 10:33:02] Burnout Co-pilot startup logger initialising...
+[StartupLogger 10:33:02] Loaded credentials for divya98desai@gmail.com (uid=58d2bde9-5b03-43eb-a176-6ac280e34aa3)
+[StartupLogger 10:33:07] Supabase init failed: No secrets files found. Valid paths for a secrets.toml file are: C:\Users\HP\.streamlit\secrets.toml, C:\Users\HP\Documents\Burnout_Co-pilot\.streamlit\secrets.toml
