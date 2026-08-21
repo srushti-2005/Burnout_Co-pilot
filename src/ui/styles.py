@@ -256,26 +256,18 @@ def apply_custom_styles():
         transition: transform 0.2s ease !important;
     }
 
-    /* ── SIDEBAR ALWAYS VISIBLE ────────────────────────────────────────────── */
-    section[data-testid="stSidebar"] {
-        min-width: 260px !important;
-        max-width: 260px !important;
-        transform: translateX(0px) !important;
+    /* ── SIDEBAR TOGGLE — kept visible and styled, not forced open ─────────── */
+    /* FIXED: the old rule here forced the sidebar permanently open (fixed
+       width, translateX(0), visibility:visible) and hid every selector
+       that could be the collapse/expand button, so there was no way to
+       toggle it. This keeps the sidebar's look but leaves Streamlit's
+       own open/close behavior — and the button that controls it — intact. */
+    button[data-testid="collapsedControl"] {
         visibility: visible !important;
-        display: block !important;
-    }
-    /* ── SIDEBAR TOGGLE BUTTON ─────────────────────────────────────────────── */
-    /* Keep Streamlit's native close/open button visible */
-    [data-testid="stSidebarCollapseButton"] {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    [data-testid="stSidebarCollapseButton"] button {
         display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+        background: white !important;
+        border-radius: 8px !important;
+        box-shadow: var(--clay-shadow-sm) !important;
     }
 
     /* ── HIDE STREAMLIT DOCS/HELP PANEL IN SIDEBAR ─────────────────────────── */
