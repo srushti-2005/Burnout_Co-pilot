@@ -33,8 +33,31 @@ def apply_custom_styles():
         font-family: 'Nunito', sans-serif !important;
     }
 
-    /* ── HIDE DEFAULT STREAMLIT ELEMENTS ───────────────────────────────────── */
-    #MainMenu, footer, header { visibility: hidden; }
+    /* ── HIDE STREAMLIT CHROME — SIDEBAR TOGGLE FORCED VISIBLE ──────────────
+       Only the hamburger menu and footer are hidden. Nothing here touches
+       the header shell or its toolbar as a whole, because either of those
+       can contain (or be a sibling of) the sidebar toggle button depending
+       on Streamlit version, and hiding them was swallowing the toggle.
+       The toggle itself is force-shown below with maximum specificity so
+       no other rule in this file can hide it again. ────────────────────── */
+    #MainMenu { visibility: hidden; }
+    footer { visibility: hidden; }
+
+    [data-testid="collapsedControl"] {
+        visibility: visible !important;
+        display: flex !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        z-index: 999999 !important;
+    }
+    [data-testid="stSidebarCollapseButton"] {
+        visibility: visible !important;
+        display: flex !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        z-index: 999999 !important;
+    }
+
     .block-container {
         padding-top: 2rem !important;
         padding-bottom: 2rem !important;
@@ -254,20 +277,6 @@ def apply_custom_styles():
     .element-container div[style*="border-radius:10px"] {
         box-shadow: var(--clay-shadow) !important;
         transition: transform 0.2s ease !important;
-    }
-
-    /* ── SIDEBAR TOGGLE — kept visible and styled, not forced open ─────────── */
-    /* FIXED: the old rule here forced the sidebar permanently open (fixed
-       width, translateX(0), visibility:visible) and hid every selector
-       that could be the collapse/expand button, so there was no way to
-       toggle it. This keeps the sidebar's look but leaves Streamlit's
-       own open/close behavior — and the button that controls it — intact. */
-    button[data-testid="collapsedControl"] {
-        visibility: visible !important;
-        display: flex !important;
-        background: white !important;
-        border-radius: 8px !important;
-        box-shadow: var(--clay-shadow-sm) !important;
     }
 
     /* ── HIDE STREAMLIT DOCS/HELP PANEL IN SIDEBAR ─────────────────────────── */
