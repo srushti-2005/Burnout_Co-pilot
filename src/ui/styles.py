@@ -256,30 +256,26 @@ def apply_custom_styles():
         transition: transform 0.2s ease !important;
     }
 
+    /* ── SIDEBAR ALWAYS VISIBLE ────────────────────────────────────────────── */
+    section[data-testid="stSidebar"] {
+        min-width: 260px !important;
+        max-width: 260px !important;
+        transform: translateX(0px) !important;
+        visibility: visible !important;
+        display: block !important;
+    }
     /* ── SIDEBAR TOGGLE BUTTON ─────────────────────────────────────────────── */
-    /* Keep Streamlit's native close/open button visible. */
-    button[data-testid="stSidebarCollapseButton"],
-    button[data-testid="collapsedControl"] {
+    /* Keep Streamlit's native close/open button visible */
+    [data-testid="stSidebarCollapseButton"] {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    [data-testid="stSidebarCollapseButton"] button {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
-        background: #e2e0ff !important;
-        color: #2d3561 !important;
-        border: 2px solid #a8a4ff !important;
-        border-radius: 12px !important;
-        box-shadow: 3px 3px 0px #c0bbff !important;
-        width: 42px !important;
-        height: 42px !important;
-        align-items: center !important;
-        justify-content: center !important;
-        z-index: 9999 !important;
-    }
-
-    button[data-testid="stSidebarCollapseButton"]:hover,
-    button[data-testid="collapsedControl"]:hover {
-        background: #cbc7ff !important;
-        border-color: #7b76e0 !important;
-        box-shadow: 4px 4px 0px #a8a4ff !important;
     }
 
     /* ── HIDE STREAMLIT DOCS/HELP PANEL IN SIDEBAR ─────────────────────────── */
